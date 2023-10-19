@@ -10,11 +10,20 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@index([name])
+model Room {
+  id            String  @id @default(cuid())
+  maxPlayers    Int     @default(4)
+  playersInRoom Int     @default(1)
+  isPublic      Boolean @default(true)
+  code          String  @unique
+  hostUsername  String
+  hostUserID    String
+  gameStarted   Boolean @default(false)
 }
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  expires      DateTime
+}
+

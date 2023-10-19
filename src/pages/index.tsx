@@ -1,10 +1,13 @@
 import Head from "next/head";
+import { io } from "socket.io-client";
 
-import { api } from "@/utils/api";
+export const socket = io({
+  path: "/api/socket",
+  closeOnBeforeunload: false,
+});
 
 export default function Home() {
-  //const hello = api.post.hello.useQuery({ text: "from tRPC" });
-
+  
   return (
     <>
       <Head>
@@ -13,7 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <h1>Socket game</h1>
+        <h1 className="text-white text-3xl">Socket game</h1>
       </main>
     </>
   );
