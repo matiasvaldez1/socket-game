@@ -15,7 +15,7 @@ export default function SocketHandler(req: any, res: any) {
     const onConnection = (socket: Socket) => {
       socket.on("ping", () => console.log("pong"))
     };
-  
+    
     io.on("connection", onConnection);
   
     res.end();

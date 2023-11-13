@@ -10,20 +10,29 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Room {
-  id            String  @id @default(cuid())
-  maxPlayers    Int     @default(4)
-  playersInRoom Int     @default(1)
-  isPublic      Boolean @default(true)
-  code          String  @unique
-  hostUsername  String
-  hostUserID    String
-  gameStarted   Boolean @default(false)
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String
+  email     String?  @unique
+  picture   String?
+  hp        Int      @default(100)
+  room      Room?    @relation(fields: [roomId], references: [id])
+  roomId    Int?
+  games     Game[]   @relation("GamePlayers")
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  expires      DateTime
+model Room {
+  id     Int     @id @default(autoincrement())
+  name   String
+  users  User[]
+  games Game[]
+}
+
+model Game {
+  id         Int      @id @default(autoincrement())
+  roomId     Int
+  room       Room     @relation(fields: [roomId], references: [id])
+  players    User[]   @relation("GamePlayers")
+  createdAt  DateTime @default(now())
 }
 
