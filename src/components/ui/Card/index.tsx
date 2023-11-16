@@ -2,29 +2,32 @@ import React, { memo } from "react";
 import cn from "classnames";
 
 type CardProps = Omit<JSX.IntrinsicElements["div"], "ref"> & {
-  type?: "warning" | "placeholder";
   className?: string;
   children?: React.ReactNode;
+  title?: string;
+  type?: "default" | "rounded";
+  titleAlign?: "default" | "centered";
 };
 
 const Card: React.FC<CardProps> = ({
   className,
   children,
-  type,
+  title,
+  type = "default",
+  titleAlign = "default",
   ...restProps
 }) => {
+  const withTitle = Boolean(title);
   return (
     <div
-      className={cn(
-        "rounded-lg border border-gray-300 bg-white p-4 ",
-        className,
-        {
-          "border-red-400 bg-red-100": type === "warning",
-          "bg-gray-300 text-center text-xl font-bold": type === "placeholder",
-        }
-      )}
+      className={cn("nes-container p-4", className, {
+        "with-title": withTitle,
+        "is-centered": titleAlign === "centered",
+        "is-rounded": type === "rounded",
+      })}
       {...restProps}
     >
+      {withTitle && <p className="title">{title}</p>}
       {children}
     </div>
   );

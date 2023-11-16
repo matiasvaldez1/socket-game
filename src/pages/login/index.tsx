@@ -1,11 +1,10 @@
 import LoginPage from "@/components/templates/Login";
-import CustomHead from "@/components/ui/Head";
+import Layout from "@/components/ui/Layout";
 
 export default function Login() {
   return (
-    <>
-      <CustomHead title="Login" />
+    <Layout title="Lobby">
       <LoginPage />
-    </>
+    </Layout>
   );
 }

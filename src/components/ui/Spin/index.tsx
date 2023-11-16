@@ -1,12 +1,13 @@
-import { AnimationEventHandler, memo, useCallback, useState } from "react";
-import useWatcher from "hooks/useWatcher";
+import type { AnimationEventHandler} from "react";
+import { memo, useCallback, useState } from "react";
+import useWatcher from "@/hooks/useWatcher";
 
 export interface SpinProps
   extends Omit<JSX.IntrinsicElements["div"], "ref" | "children"> {
   loading?: boolean;
 }
 
-function Spin({ loading = true, className, ...restProps }: SpinProps) {
+function Spin({ loading = true, ...restProps }: SpinProps) {
   const [state, setState] = useState({
     loading,
     animate: false,

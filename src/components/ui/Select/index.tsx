@@ -2,14 +2,30 @@ import React, { useState } from "react";
 
 interface Props extends Omit<JSX.IntrinsicElements['select'], 'ref' | 'type'> {
   label?: string;
+  selectType?: "success" | "warning" | "error";
   options: { value: string; label: string }[];
   className?: string;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   name?: string;
 }
 
+const selectTypeClasses = {
+  success: ".is-success",
+  warning: ".is-warning",
+  error: ".is-error",
+  empty: ''
+};
+
+const selectTypeClassesForElements = {
+  success: "success_select",
+  warning: "warning_select",
+  error: "error_select",
+  empty: ''
+};
+
 const Select: React.FC<Props> = ({
   label,
+  selectType,
   options,
   className = "",
   ...props
@@ -22,14 +38,14 @@ const Select: React.FC<Props> = ({
   };
 
   return (
-    <div className={`relative rounded-md shadow-sm ${className}`}>
+    <div className={`relative rounded-md shadow-sm nes-select ${selectTypeClasses[selectType ?? 'empty']} ${className}`}>
       {label && (
-        <label className="block text-sm font-medium leading-5 text-gray-700">
+        <label htmlFor={selectTypeClassesForElements[selectType ?? 'empty']} className="block text-sm font-medium leading-5 text-gray-700">
           {label}
         </label>
       )}
       <select
-        className="form-select focus:shadow-outline-blue block w-full rounded-md border border-gray-300 bg-white py-3 px-4 leading-5 text-gray-900 placeholder-gray-500 transition duration-150 ease-in-out focus:border-blue-300 focus:outline-none active:bg-gray-50 active:text-gray-800"
+        id={selectTypeClassesForElements[selectType ?? 'empty']}
         value={value}
         onChange={handleChange}
         {...props}

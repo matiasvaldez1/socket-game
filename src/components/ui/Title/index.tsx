@@ -2,19 +2,19 @@ import classNames from "classnames";
 import { createElement, memo } from "react";
 
 const typeStyles = {
-  default: "",
-  category: "text-gray-500 font-normal text-base leading-normal tracking-normal",
-  primary: "text-primary-100 font-bold text-xl leading-normal tracking-tight",
-  secondary:
-    "text-gray-500 font-normal text-base leading-normal tracking-normal",
-  bold: "text-xl font-bold leading-tight tracking-tight",
+  default: "nes-text",
+  category: "nes-text is-disabled leading-normal tracking-normal",
+  primary: "nes-text is-primary leading-normal tracking-tight",
+  secondary: "nes-text is-success leading-normal tracking-normal",
+  error: "nes-text is-error leading-normal tracking-normal",
+  bold: "nes-text text-xl font-bold leading-tight tracking-tight",
 };
 
 interface TitleProps {
   children: React.ReactNode;
   seo?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span";
   className?: string;
-  type?: "default" | "category" | "primary" | "secondary" | "bold" | undefined;
+  type?: "default" | "category" | "primary" | "secondary" | "bold" | "error" | undefined;
 }
 
 const Title = ({

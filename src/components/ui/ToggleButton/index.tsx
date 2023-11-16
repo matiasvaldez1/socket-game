@@ -16,7 +16,7 @@ export default function ToggleButton({
 }: ToggleButtonProps) {
   return (
     <div
-      className={`flex h-16 w-32 cursor-pointer justify-start rounded-full bg-primary-100 p-2 ${
+      className={`flex h-16 w-32 cursor-pointer justify-start rounded-full nes-btn p-2 ${
         show && "justify-end"
       }`}
       {...restProps}

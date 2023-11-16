@@ -1,11 +1,26 @@
 import Head from "next/head";
 
-export function CommonHead({ title }: { title: string }) {
+const CustomHead = ({
+  title,
+  description,
+  keywords,
+}: {
+  title: string;
+  description?: string;
+  keywords?: string;
+}) => {
   return (
     <Head>
       <title>{title}</title>
-      <meta name="description" content="Tu menu online en 30 segundos" />
-      <link rel="icon" href="/favicon.ico" />
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+        name="description"
+        content={description ?? "Multiplayer shooter real time game"}
+      />
+      <meta name="keywords" content={keywords ?? "Online shooter game"} />  
     </Head>
   );
-}
+};
+
+export default CustomHead;

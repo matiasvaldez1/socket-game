@@ -1,27 +1,23 @@
-import {
+/* eslint-disable react-hooks/rules-of-hooks */
+import type {
   CSSProperties,
-  memo,
   ReactElement,
   ReactNode,
+  ComponentType,
+  MemoExoticComponent} from "react";
+import {
   useMemo,
   useCallback,
   cloneElement,
   isValidElement,
-  useEffect,
-  ComponentType,
-  MemoExoticComponent,
+  useEffect
 } from "react";
 import { createPortal } from "react-dom";
-import useUncontrolled from "@hooks/useUncontrolled";
-import Button from "@components/ui/Button";
+import useUncontrolled from "@/hooks/useUncrontrolled";
+import Button from "@/components/ui/Button";
 
 const defaultRoot = "modal-root";
 const defaultButtonsToClose = ["Escape"];
-const closeIcon = (
-  <svg width="27" height="27" viewBox="0 0 27 27" fill="none">
-    <path d="M18.6436 20.9705L13.3625 15.6895L8.0815 20.9705L5.78086 18.6699L11.0619 13.3888L5.78086 8.10781L8.10765 5.78102L13.3887 11.062L18.6697 5.78102L20.9703 8.08167L15.6893 13.3627L20.9703 18.6437L18.6436 20.9705Z" />
-  </svg>
-);
 
 export type ModalChildProps = {
   visible: boolean;
@@ -158,7 +154,7 @@ function Modal({
       buttonsToClose.includes(e.code) && handleClose();
     document.addEventListener<"keydown">("keydown", handleKeydown);
     return () => document.removeEventListener("keydown", handleKeydown);
-  }, [closableByKeyboard, buttonsToClose, handleClose]);
+  }, [closableByKeyboard, buttonsToClose, handleClose, closable]);
 
     visible && noScroll()
 
@@ -177,7 +173,7 @@ function Modal({
         {closable && (
           <div>
           <Button type="cancel" className="absolute top-3 right-3" onClick={handleClose}>
-            {/* {closeIcon} */} X
+            X
           </Button>
           </div>
         )}

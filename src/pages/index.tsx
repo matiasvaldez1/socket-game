@@ -1,5 +1,5 @@
 import HomePage from "@/components/templates/Home";
-import CustomHead from "@/components/ui/Head";
+import Layout from "@/components/ui/Layout";
 import { io } from "socket.io-client";
 
 export const socket = io({
@@ -9,9 +9,8 @@ export const socket = io({
 
 export default function Index() {
   return (
-    <>
-      <CustomHead title="Lobby" />
+    <Layout title="Lobby">
       <HomePage />
-    </>
+    </Layout>
   );
 }
